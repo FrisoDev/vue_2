@@ -1,93 +1,28 @@
 <template>
-  <div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Getting There</h2>
-  </div>
-</div>
-</template>
+   <div class="col-sm-6 col-sm-offset-3">
+     <h1>Hit me up fam</h1>
+     <button class="btn btn-primary" v-on:click="getQuote()">Takbir</button>
+     <div class="quote-area" v-if="quote">
+       <h2><blockquote>{{ quote }}</blockquote></h2>
+     </div>
+   </div>
+ </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Understanding Vue'
-    }
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+ <script>
+ export default {
+   data() {
+     return {
+       quote: ''
+     }
+   },
+   methods: {
+     getQuote() {
+       this.$http
+         .get('http://localhost:3001/api/random-quote', (data) => {
+           this.quote = data;
+         })
+         .error((err) => console.log(err))
+     }
+   }
+ }
+ </script>
